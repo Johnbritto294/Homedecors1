@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Stackly</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebarMenu">
+    <a href="index.html" class="sidebar-logo">
+      <img src="logo_green.webp" alt="Stackly Logo">
+    </a>
+    <nav class="sidebar-menu">
+      <a href="#" class="sidebar-item active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+        Dashboard
+      </a>
+      <a href="#" class="sidebar-item" data-view="orders">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Orders
+      </a>
+      <a href="#" class="sidebar-item" data-view="products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+        Products
+      </a>
+      <a href="#" class="sidebar-item" data-view="customers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Customers
+      </a>
+      <a href="#" class="sidebar-item" data-view="reports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        Reports
+      </a>
+      <a href="#" class="sidebar-item" data-view="discounts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3.82 2.56 12 1.2 20.18 2.56 21 12 12 22.8 3 12 3.82 2.56"></polygon><line x1="12" y1="1.2" x2="12" y2="22.8"></line></svg>
+        Discounts
+      </a>
+      <div class="sidebar-divider"></div>
+      <a href="#" class="sidebar-item" data-view="integrations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+        Integrations
+      </a>
+      <a href="#" class="sidebar-item" data-view="help">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Help
+      </a>
+      <a href="#" class="sidebar-item" data-view="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Settings
+      </a>
+      <div class="sidebar-divider" style="margin-top: auto;"></div>
+      <a href="#" class="sidebar-item" id="logoutBtn" style="color: var(--clay);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        Log Out
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <main class="main-wrapper">
+    
+    <!-- HEADER -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <button class="mobile-menu-btn" id="sidebarToggle" aria-label="Toggle Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <div class="title-container" style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center;">
+          <h1 id="viewTitle" style="margin: 0; line-height: 1.2;">Dashboard</h1>
+          <span class="header-email-subtitle" id="profileEmailSubtitle" style="font-family: var(--font-mono); font-size: 10px; color: var(--brass); margin-top: 2px; display: none;">admin@stackly.com</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="header-icon-btn" title="Messages" onclick="alShowToast('No new messages ✦')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+        <button class="header-icon-btn" title="Notifications" onclick="alShowToast('System alerts up to date ✦')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="badge-dot"></span>
+        </button>
+        <div class="user-profile">
+          <div class="user-avatar" style="width:36px;height:36px;border-radius:50%;background:var(--brass);color:var(--ink);display:grid;place-items:center;font-weight:700;font-family:var(--font-mono);" id="headerAvatar">A</div>
+          <div class="user-info">
+            <span class="user-role" id="profileRole" style="color:var(--brass);font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;line-height:1;">Admin</span>
+            <span class="user-name" id="profileNameText" style="font-size:14px;font-weight:600;line-height:1.3;">Admin User</span>
+            <span class="user-email" id="profileEmailFull" style="font-size:11px;opacity:.6;line-height:1;">admin@stackly.com</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="dashboard-content">
+      
+      <!-- =========================================================
+           VIEW: DASHBOARD (Active by default)
+           ========================================================= -->
+      <section class="dashboard-view active" id="view-dashboard">
+        
+        <div class="kpi-row">
+          <!-- Sales Card -->
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Total Sales</h3>
+              <div class="kpi-num" id="statSales" data-target="983410">$0</div>
+              <span class="kpi-trend trend-up">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                +3.36% vs last week
+              </span>
+            </div>
+            <div class="kpi-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+          </div>
+
+          <!-- Orders Card -->
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Total Orders</h3>
+              <div class="kpi-num" id="statOrders" data-target="58375">0</div>
+              <span class="kpi-trend trend-down">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+                -2.89% vs last week
+              </span>
+            </div>
+            <div class="kpi-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            </div>
+          </div>
+
+          <!-- Visitors Card -->
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Total Visitors</h3>
+              <div class="kpi-num" id="statVisitors" data-target="237782">0</div>
+              <span class="kpi-trend trend-up">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                +8.02% vs last week
+              </span>
+            </div>
+            <div class="kpi-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid-2-1">
+          <!-- Line Chart -->
+          <div class="card-widget">
+            <div class="widget-head">
+              <h2>Revenue Analytics</h2>
+              <div class="chart-legend">
+                <div class="legend-item"><span class="legend-color main"></span>Revenue</div>
+                <div class="legend-item"><span class="legend-color secondary"></span>Order</div>
+              </div>
+              <div class="widget-action">
+                <select aria-label="Select Line Chart Timeframe">
+                  <option>Last 8 Days</option>
+                  <option>Last Month</option>
+                </select>
+              </div>
+            </div>
+            <div class="chart-container">
+              <svg viewBox="0 0 700 240" class="line-chart-svg" width="100%" height="240">
+                <defs>
+                  <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#B08D57" stop-opacity="0.22"/>
+                    <stop offset="100%" stop-color="#B08D57" stop-opacity="0.00"/>
+                  </linearGradient>
+                </defs>
+                <line x1="40" y1="200" x2="680" y2="200" stroke="rgba(27,25,24,0.06)" stroke-width="1" />
+                <line x1="40" y1="150" x2="680" y2="150" stroke="rgba(27,25,24,0.06)" stroke-width="1" />
+                <line x1="40" y1="100" x2="680" y2="100" stroke="rgba(27,25,24,0.06)" stroke-width="1" />
+                <line x1="40" y1="50" x2="680" y2="50" stroke="rgba(27,25,24,0.06)" stroke-width="1" />
+                
+                <text x="30" y="204" font-family="'Space Mono', monospace" font-size="10" fill="#8a8478" text-anchor="end">0</text>
+                <text x="30" y="154" font-family="'Space Mono', monospace" font-size="10" fill="#8a8478" text-anchor="end">4K</text>
+                <text x="30" y="104" font-family="'Space Mono', monospace" font-size="10" fill="#8a8478" text-anchor="end">8K</text>
+                <text x="30" y="54" font-family="'Space Mono', monospace" font-size="10" fill="#8a8478" text-anchor="end">12K</text>
+                <text x="30" y="10" font-family="'Space Mono', monospace" font-size="10" fill="#8a8478" text-anchor="end">16K</text>
+                
+                <text x="60" y="222" font-family="'Space Mono', monospace" font-size="9" fill="#8a8478" text-anchor="middle">12 Aug</text>
+                <text x="140" y="222" font-family="'Space Mono', monospace" font-size="9" fill="#8a8478" text-anchor="middle">13 Aug</text>
+                <text x="220" y="222" font-family="'Space Mono', monospace" font-size="9" fill="#8a8478" text-anchor="middle">14 Aug</text>
+                <text x="300" y="222" font-family="'Space Mono', monospace" font-size="9" fill="#8a8478" text-anchor="middle">15 Aug</text>
+                <text x="380" y="222" font-family="'Space Mono', monospace" font-size="9" fill="#8a8478" text-anchor="middle">16 Aug</text>
+                <text x="460" y="222" font-family="'Space Mono', monospace" font-size="9" fill="#8a8478" text-anchor="middle">17 Aug</text>
+                <text x="540" y="222" font-family="'Space Mono', monospace" font-size="9" fill="#8a8478" text-anchor="middle">18 Aug</text>
+                <text x="620" y="222" font-family="'Space Mono', monospace" font-size="9" fill="#8a8478" text-anchor="middle">19 Aug</text>
+                
+                <path d="M 60 200 L 60 130 Q 100 120 140 125 T 220 110 T 300 115 T 380 75 T 460 100 T 540 125 T 620 90 L 620 200 Z" class="chart-area-main" />
+                <path d="M 60 130 Q 100 120 140 125 T 220 110 T 300 115 T 380 75 T 460 100 T 540 125 T 620 90" class="chart-line-main" />
+                <path d="M 60 160 Q 100 150 140 155 T 220 145 T 300 140 T 380 110 T 460 130 T 540 165 T 620 150" class="chart-line-secondary" />
+                <circle cx="380" cy="75" r="5" class="chart-tooltip-point" />
+                <g class="chart-anim-label" style="opacity: 0; animation: fadeIn 0.4s ease 1.8s forwards;">
+                  <rect x="350" y="32" width="60" height="24" rx="4" fill="#1B1918" />
+                  <text x="380" y="48" font-family="'Space Mono', monospace" font-size="10" font-weight="bold" fill="#F6F1E7" text-anchor="middle">$14,521</text>
+                  <line x1="380" y1="56" x2="380" y2="70" stroke="#1B1918" stroke-width="1.5" />
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Gauge -->
+          <div class="card-widget" style="display: flex; flex-direction: column;">
+            <div class="widget-head" style="margin-bottom: 12px;">
+              <h2>Monthly Target</h2>
+              <button class="header-icon-btn" style="width: 32px; height: 32px;" title="Options">···</button>
+            </div>
+            <div class="target-gauge-wrap" id="targetGaugeBox">
+              <svg width="180" height="110" viewBox="0 0 110 65" class="radial-svg">
+                <path d="M 10 55 A 45 45 0 0 1 100 55" class="radial-bg" />
+                <path d="M 10 55 A 45 45 0 0 1 100 55" class="radial-fill" />
+              </svg>
+              <div class="gauge-center-text">
+                <span class="gauge-pct">85%</span>
+                <span class="gauge-desc">+8.02% MoM</span>
+              </div>
+            </div>
+            <div class="target-summary">
+              <p><b>Great Progress!</b> Our achievement increased by $20,000, let's reach 100% next month.</p>
+            </div>
+            <div class="target-vals">
+              <div class="target-val">
+                <div><span>Target</span><b>$600,000</b></div>
+              </div>
+              <div class="target-val">
+                <div><span>Revenue</span><b style="color: var(--brass);">$510,000</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid-1-1-1">
+          <!-- Active Users -->
+          <div class="card-widget">
+            <div class="widget-head">
+              <h2>Active Users</h2>
+              <button class="header-icon-btn" style="width: 32px; height: 32px;" title="Options">···</button>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px;">
+                <span style="font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--ink);">2,758</span>
+                <span style="color: var(--forest); font-family: var(--font-mono); font-size: 11px; font-weight: 700;">+8.02% vs last month</span>
+              </div>
+              <div class="user-bar-list" id="usersList">
+                <div class="user-bar-item">
+                  <div class="user-bar-info"><span>United States</span><span>36%</span></div>
+                  <div class="user-bar-bg"><div class="user-bar-fill" data-percent="36%"></div></div>
+                </div>
+                <div class="user-bar-item">
+                  <div class="user-bar-info"><span>United Kingdom</span><span>24%</span></div>
+                  <div class="user-bar-bg"><div class="user-bar-fill" data-percent="24%"></div></div>
+                </div>
+                <div class="user-bar-item">
+                  <div class="user-bar-info"><span>Indonesia</span><span>17.5%</span></div>
+                  <div class="user-bar-bg"><div class="user-bar-fill" data-percent="17.5%"></div></div>
+                </div>
+                <div class="user-bar-item">
+                  <div class="user-bar-info"><span>Russia</span><span>15%</span></div>
+                  <div class="user-bar-bg"><div class="user-bar-fill" data-percent="15%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Funnel -->
+          <div class="card-widget">
+            <div class="widget-head">
+              <h2>Conversion Rate</h2>
+              <div class="widget-action">
+                <select aria-label="Select Conversion Timeframe">
+                  <option>This Week</option>
+                  <option>This Month</option>
+                </select>
+              </div>
+            </div>
+            <div class="conversion-funnel" id="funnelBox">
+              <div class="funnel-step">
+                <span class="funnel-val">25K</span>
+                <div class="funnel-bar" style="height: 0%;" data-height="100%"></div>
+                <span class="funnel-label">Views</span>
+              </div>
+              <div class="funnel-step">
+                <span class="funnel-val">12K</span>
+                <div class="funnel-bar" style="height: 0%;" data-height="48%"></div>
+                <span class="funnel-label">Cart</span>
+              </div>
+              <div class="funnel-step">
+                <span class="funnel-val">8.5K</span>
+                <div class="funnel-bar" style="height: 0%;" data-height="34%"></div>
+                <span class="funnel-label">Checkout</span>
+              </div>
+              <div class="funnel-step">
+                <span class="funnel-val">6.2K</span>
+                <div class="funnel-bar" style="height: 0%;" data-height="25.8%"></div>
+                <span class="funnel-label">Purchases</span>
+              </div>
+              <div class="funnel-step">
+                <span class="funnel-val">3K</span>
+                <div class="funnel-bar" style="height: 0%;" data-height="12%"></div>
+                <span class="funnel-label">Abandon</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Donut -->
+          <div class="card-widget" style="display: flex; flex-direction: column;">
+            <div class="widget-head">
+              <h2>Top Categories</h2>
+              <a href="404.html" style="font-family: var(--font-mono); font-size: 11px; color: var(--brass); font-weight: 700; text-transform: uppercase;">See All</a>
+            </div>
+            <div class="donut-wrap" id="donutBox">
+              <svg viewBox="0 0 100 100" class="donut-svg" width="100%" height="100%">
+                <circle cx="50" cy="50" r="40" class="donut-segment s1" />
+                <circle cx="50" cy="50" r="40" class="donut-segment s2" />
+                <circle cx="50" cy="50" r="40" class="donut-segment s3" />
+                <circle cx="50" cy="50" r="40" class="donut-segment s4" />
+              </svg>
+              <div class="donut-center">
+                <span>Total Sales</span>
+                <b>$3.4M</b>
+              </div>
+            </div>
+            <div class="category-list">
+              <div class="category-item">
+                <span class="category-label"><span class="dot-indicator c1"></span>Furniture</span>
+                <span class="category-val">$1,200,000</span>
+              </div>
+              <div class="category-item">
+                <span class="category-label"><span class="dot-indicator c2"></span>Lighting</span>
+                <span class="category-val">$950,000</span>
+              </div>
+              <div class="category-item">
+                <span class="category-label"><span class="dot-indicator c3"></span>Textiles</span>
+                <span class="category-val">$750,000</span>
+              </div>
+              <div class="category-item">
+                <span class="category-label"><span class="dot-indicator c4"></span>Decor</span>
+                <span class="category-val">$500,000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           VIEW: ORDERS
+           ========================================================= -->
+      <section class="dashboard-view" id="view-orders">
+        
+        <div class="kpi-row">
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Pending Orders</h3>
+              <div class="kpi-num" id="statPendingOrders" data-target="1284">0</div>
+              <span class="kpi-trend trend-up">+4.2% vs yesterday</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Shipped Orders</h3>
+              <div class="kpi-num" id="statShippedOrders" data-target="48290">0</div>
+              <span class="kpi-trend trend-up">+12.5% vs last week</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Returned / Cancelled</h3>
+              <div class="kpi-num" id="statCancelledOrders" data-target="801">0</div>
+              <span class="kpi-trend trend-down">-1.2% vs yesterday</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></div>
+          </div>
+        </div>
+
+        <div class="dashboard-table-wrap">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Products</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700;">#10852</td>
+                <td>Sarah Jenkins</td>
+                <td>Belgian Linen Duvet Set (x2)</td>
+                <td>2026-07-27</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$560.00</td>
+                <td><span class="status-badge completed">Completed</span></td>
+              </tr>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700;">#10851</td>
+                <td>Arthur Pendelton</td>
+                <td>Brushed Brass Pendant Light (x1)</td>
+                <td>2026-07-27</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$185.00</td>
+                <td><span class="status-badge processing">Processing</span></td>
+              </tr>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700;">#10850</td>
+                <td>Li Jing</td>
+                <td>Hand-thrown Clay Planter (x3)</td>
+                <td>2026-07-26</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$135.00</td>
+                <td><span class="status-badge completed">Completed</span></td>
+              </tr>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700;">#10849</td>
+                <td>Elena Rostova</td>
+                <td>Solid Oak Dining Chair (x2)</td>
+                <td>2026-07-25</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$840.00</td>
+                <td><span class="status-badge cancelled">Cancelled</span></td>
+              </tr>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700;">#10848</td>
+                <td>David Miller</td>
+                <td>Amber Soy Wax Candle (x4)</td>
+                <td>2026-07-25</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$144.00</td>
+                <td><span class="status-badge completed">Completed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           VIEW: PRODUCTS
+           ========================================================= -->
+      <section class="dashboard-view" id="view-products">
+        
+        <div class="kpi-row">
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Total Catalog Products</h3>
+              <div class="kpi-num" id="statCatalogProducts" data-target="342">0</div>
+              <span class="kpi-trend trend-up">+4 new items this month</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Low Stock Alert</h3>
+              <div class="kpi-num" id="statLowStockProducts" data-target="12">0</div>
+              <span class="kpi-trend trend-down">Needs replenishment</span>
+            </div>
+            <div class="kpi-icon" style="color: var(--clay);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Out of Stock</h3>
+              <div class="kpi-num" id="statOutOfStockProducts" data-target="4">0</div>
+              <span class="kpi-trend trend-down">Inactive list</span>
+            </div>
+            <div class="kpi-icon" style="color: var(--clay);"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></div>
+          </div>
+        </div>
+
+        <div class="dashboard-table-wrap">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Product Details</th>
+                <th>Category</th>
+                <th>Stock Level</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="product-row-info">
+                    <img src="assets/images/content/oak_chair.webp" class="product-row-img" alt="Chair">
+                    <b>Solid Oak Dining Chair</b>
+                  </div>
+                </td>
+                <td>Seating</td>
+                <td>
+                  <div class="dashboard-progress-bar"><div class="dashboard-progress-fill low" style="width: 0%;" data-percent="5%"></div></div>
+                  <span style="font-family: var(--font-mono); font-size: 12px; margin-left: 8px;">5 items</span>
+                </td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$420.00</td>
+                <td><span class="status-badge stock-low">Low Stock</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="product-row-info">
+                    <img src="assets/images/content/linen_duvet.webp" class="product-row-img" alt="Duvet">
+                    <b>Belgian Linen Duvet Set</b>
+                  </div>
+                </td>
+                <td>Textiles</td>
+                <td>
+                  <div class="dashboard-progress-bar"><div class="dashboard-progress-fill" style="width: 0%;" data-percent="48%"></div></div>
+                  <span style="font-family: var(--font-mono); font-size: 12px; margin-left: 8px;">48 items</span>
+                </td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$280.00</td>
+                <td><span class="status-badge stock-in">In Stock</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="product-row-info">
+                    <img src="assets/images/content/lamp.webp" class="product-row-img" alt="Pendant">
+                    <b>Brushed Brass Pendant Light</b>
+                  </div>
+                </td>
+                <td>Lighting</td>
+                <td>
+                  <div class="dashboard-progress-bar"><div class="dashboard-progress-fill low" style="width: 0%;" data-percent="0%"></div></div>
+                  <span style="font-family: var(--font-mono); font-size: 12px; margin-left: 8px;">0 items</span>
+                </td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$185.00</td>
+                <td><span class="status-badge stock-low">Out of Stock</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="product-row-info">
+                    <img src="assets/images/content/planter.webp" class="product-row-img" alt="Planter">
+                    <b>Hand-thrown Clay Planter</b>
+                  </div>
+                </td>
+                <td>Decor</td>
+                <td>
+                  <div class="dashboard-progress-bar"><div class="dashboard-progress-fill" style="width: 0%;" data-percent="85%"></div></div>
+                  <span style="font-family: var(--font-mono); font-size: 12px; margin-left: 8px;">85 items</span>
+                </td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$45.00</td>
+                <td><span class="status-badge stock-in">In Stock</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           VIEW: CUSTOMERS
+           ========================================================= -->
+      <section class="dashboard-view" id="view-customers">
+        
+        <div class="kpi-row">
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Total Customers</h3>
+              <div class="kpi-num" id="statCustomersTotal" data-target="18490">0</div>
+              <span class="kpi-trend trend-up">+14.2% YoY growth</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>New Signups</h3>
+              <div class="kpi-num" id="statCustomersNew" data-target="350">0</div>
+              <span class="kpi-trend trend-up">This week</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>VIP Accounts</h3>
+              <div class="kpi-num" id="statCustomersVip" data-target="1248">0</div>
+              <span class="kpi-trend trend-up">Lifetime value > $1K</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+          </div>
+        </div>
+
+        <div class="dashboard-table-wrap">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Email Address</th>
+                <th>Purchase Volume</th>
+                <th>Total Revenue</th>
+                <th>Activity Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 600;">Sarah Jenkins</td>
+                <td style="font-family: var(--font-mono);">sarah.j@example.com</td>
+                <td>14 orders</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$1,840.00</td>
+                <td><span class="status-badge completed">VIP Customer</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">Arthur Pendelton</td>
+                <td style="font-family: var(--font-mono);">arthur.p@example.com</td>
+                <td>8 orders</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$950.00</td>
+                <td><span class="status-badge processing">Active</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">Elena Rostova</td>
+                <td style="font-family: var(--font-mono);">elena.r@example.com</td>
+                <td>2 orders</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$840.00</td>
+                <td><span class="status-badge processing">Active</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">David Miller</td>
+                <td style="font-family: var(--font-mono);">david.m@example.com</td>
+                <td>12 orders</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$1,244.00</td>
+                <td><span class="status-badge completed">VIP Customer</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           VIEW: REPORTS
+           ========================================================= -->
+      <section class="dashboard-view" id="view-reports">
+        
+        <div class="kpi-row">
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Profit Margin</h3>
+              <div class="kpi-num" id="statReportMargin" data-target="64.2">0%</div>
+              <span class="kpi-trend trend-up">+2.4% vs last Q</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Avg Order Value</h3>
+              <div class="kpi-num" id="statReportAov" data-target="128.5">$0</div>
+              <span class="kpi-trend trend-up">Increased basket size</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8V12L15 15"></path></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>COGS</h3>
+              <div class="kpi-num" id="statReportCogs" data-target="328490">$0</div>
+              <span class="kpi-trend trend-down">Production cost index</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
+          </div>
+        </div>
+
+        <div class="dashboard-table-wrap">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Quarterly Period</th>
+                <th>Revenue</th>
+                <th>Expenses</th>
+                <th>Cost of Goods</th>
+                <th>Net Profit Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 600;">Q2 — 2026</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$428,490</td>
+                <td style="font-family: var(--font-mono);">$152,900</td>
+                <td style="font-family: var(--font-mono);">$94,000</td>
+                <td><b style="color: var(--forest-light);">64.2%</b></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">Q1 — 2026</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$385,000</td>
+                <td style="font-family: var(--font-mono);">$148,000</td>
+                <td style="font-family: var(--font-mono);">$89,000</td>
+                <td><b style="color: var(--forest-light);">61.8%</b></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">Q4 — 2025</td>
+                <td style="font-family: var(--font-mono); font-weight: 700;">$510,000</td>
+                <td style="font-family: var(--font-mono);">$190,000</td>
+                <td style="font-family: var(--font-mono);">$120,000</td>
+                <td><b style="color: var(--forest-light);">62.7%</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           VIEW: DISCOUNTS
+           ========================================================= -->
+      <section class="dashboard-view" id="view-discounts">
+        
+        <div class="kpi-row">
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Active Coupons</h3>
+              <div class="kpi-num" id="statDiscountCount" data-target="6">0</div>
+              <span class="kpi-trend trend-up">Promo codes live</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Redemptions</h3>
+              <div class="kpi-num" id="statDiscountRedeemed" data-target="12400">0</div>
+              <span class="kpi-trend trend-up">Total checkout uses</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          </div>
+          <div class="card-widget kpi-card">
+            <div class="kpi-info">
+              <h3>Total Discount Value</h3>
+              <div class="kpi-num" id="statDiscountValue" data-target="48290">$0</div>
+              <span class="kpi-trend trend-up">Saved by users</span>
+            </div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8V12L15 15"></path></svg></div>
+          </div>
+        </div>
+
+        <div class="dashboard-table-wrap">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Coupon Code</th>
+                <th>Discount Details</th>
+                <th>Redemption Bar</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--clay);">AUTUMN20</code></td>
+                <td>20% off all Autumn Collection products</td>
+                <td>
+                  <div class="dashboard-progress-bar"><div class="dashboard-progress-fill" style="width: 0%;" data-percent="68.4%"></div></div>
+                  <span style="font-size: 12px; margin-left: 8px;">342 / 500 used</span>
+                </td>
+                <td><span class="status-badge completed">Active</span></td>
+              </tr>
+              <tr>
+                <td><code style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--clay);">WELCOME10</code></td>
+                <td>10% off new user's first order</td>
+                <td>
+                  <div class="dashboard-progress-bar"><div class="dashboard-progress-fill" style="width: 0%;" data-percent="84.9%"></div></div>
+                  <span style="font-size: 12px; margin-left: 8px;">8,490 used</span>
+                </td>
+                <td><span class="status-badge completed">Active</span></td>
+              </tr>
+              <tr>
+                <td><code style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--clay);">BRASSFREE</code></td>
+                <td>Free shipping on lighting items</td>
+                <td>
+                  <div class="dashboard-progress-bar"><div class="dashboard-progress-fill low" style="width: 0%;" data-percent="100%"></div></div>
+                  <span style="font-size: 12px; margin-left: 8px;">50 / 50 used</span>
+                </td>
+                <td><span class="status-badge cancelled">Expired</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           VIEW: INTEGRATIONS
+           ========================================================= -->
+      <section class="dashboard-view" id="view-integrations">
+        
+        <div class="integration-grid">
+          
+          <div class="card-widget integration-card">
+            <div class="integration-header">
+              <div class="integration-icon">S</div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked aria-label="Toggle Shopify Sync">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <h3>Shopify Sync</h3>
+            <p>Sync all catalog products, active inventories, and customer checkout orders automatically with your Shopify store.</p>
+          </div>
+
+          <div class="card-widget integration-card">
+            <div class="integration-header">
+              <div class="integration-icon">St</div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked aria-label="Toggle Stripe Payments">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <h3>Stripe Payments</h3>
+            <p>Process credit cards, Apple Pay, and digital wallet checkouts securely at high speed and safety index rates.</p>
+          </div>
+
+          <div class="card-widget integration-card">
+            <div class="integration-header">
+              <div class="integration-icon">M</div>
+              <label class="toggle-switch">
+                <input type="checkbox" aria-label="Toggle Mailchimp Marketing">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <h3>Mailchimp Marketing</h3>
+            <p>Add checkout customers automatically to targeted email newsletters and order recovery drip campaigns.</p>
+          </div>
+
+          <div class="card-widget integration-card">
+            <div class="integration-header">
+              <div class="integration-icon">Fx</div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked aria-label="Toggle FedEx Shipping">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <h3>FedEx Shipping</h3>
+            <p>Generate tracking codes, print shipment labels, and check delivery bounds directly from your dashboard.</p>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           VIEW: HELP / SUPPORT
+           ========================================================= -->
+      <section class="dashboard-view" id="view-help">
+        
+        <div class="dashboard-grid-2-1">
+          
+          <div class="card-widget" style="padding: 28px;">
+            <div class="widget-head" style="margin-bottom: 24px;">
+              <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="accordion-list">
+              <div class="accordion-item active">
+                <div class="accordion-header">
+                  How do I reset my store profile password?
+                  <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-body">
+                  Navigate to the Dashboard Settings view using the sidebar options. Click on the Security sub-tab, enter a new password inside the text boxes, verify its strength level with the meter bar, and click Save Settings.
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  How do carbon-neutral orders calculate shipments?
+                  <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-body">
+                  Stackly integrates with FedEx APIs. Low carbon shipping is calculated based on parcel coordinate proximity and total shipping package mass volume indices.
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-header">
+                  Can I edit order contents after customer checkout?
+                  <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-body">
+                  If the order is still under "Processing" status, click on the Order ID, select edit line details, modify pricing/qty as necessary, and update changes.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-widget" style="padding: 28px;">
+            <div class="widget-head" style="margin-bottom: 24px;">
+              <h2>Submit Support Ticket</h2>
+            </div>
+            <form id="supportForm" style="display: flex; flex-direction: column; gap: 20px;">
+              <div class="form-group">
+                <label for="ticket-subject">Ticket Subject</label>
+                <input type="text" id="ticket-subject" placeholder="What issues are you experiencing?" required>
+              </div>
+              <div class="form-group">
+                <label for="ticket-priority">Priority Level</label>
+                <select id="ticket-priority" aria-label="Select Priority Level">
+                  <option value="low">Low — General Question</option>
+                  <option value="medium" selected>Medium — Standard Issue</option>
+                  <option value="high">High — System Block</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="ticket-message">Message Details</label>
+                <textarea id="ticket-message" placeholder="Provide full details of your support query..." required></textarea>
+              </div>
+              <button type="button" class="btn btn-primary" style="margin-top: 10px; justify-content: center;" onclick="window.location.href='404.html'">Submit Ticket</button>
+            </form>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           VIEW: SETTINGS
+           ========================================================= -->
+      <section class="dashboard-view" id="view-settings">
+        
+        <div class="card-widget" style="max-width: 960px; margin: 0 auto; width: 100%;">
+          <form id="settingsForm" style="display: flex; flex-direction: column; gap: 32px;">
+            
+            <div>
+              <div class="settings-section-title">General Store Profile</div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="settings-store-name">Store Name</label>
+                  <input type="text" id="settings-store-name" value="Stackly Decor" required>
+                </div>
+                <div class="form-group">
+                  <label for="settings-store-email">Contact Email</label>
+                  <input type="email" id="settings-store-email" value="contact@stackly.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="settings-currency">Base Currency</label>
+                  <select id="settings-currency" aria-label="Select Store Currency">
+                    <option value="usd" selected>USD — United States Dollar</option>
+                    <option value="eur">EUR — Euro</option>
+                    <option value="gbp">GBP — British Pound</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="settings-section-title">Security & Credentials</div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="settings-password">Change Password</label>
+                  <input type="password" id="settings-password" placeholder="Enter new password">
+                  <div class="pw-strength"><i id="settingsStrengthBar" style="display: block; height: 100%; width: 0%; transition: width .4s, background .4s; border-radius: 2px;"></i></div>
+                </div>
+                <div class="form-group">
+                  <label for="settings-password-confirm">Confirm Password</label>
+                  <input type="password" id="settings-password-confirm" placeholder="Verify password">
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="settings-section-title">Notification Settings</div>
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <b style="font-size: 14px; display: block; color: var(--ink);">Email Order Alerts</b>
+                    <span style="font-size: 12px; color: #8a8478;">Receive instant email digests when a customer completes checkouts.</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked aria-label="Toggle Email Order Alerts">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line-dark); padding-top: 16px;">
+                  <div>
+                    <b style="font-size: 14px; display: block; color: var(--ink);">Low Stock Notifications</b>
+                    <span style="font-size: 12px; color: #8a8478;">Receive alerts when inventory count levels drop below 10 items.</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" checked aria-label="Toggle Low Stock Notifications">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" style="align-self: flex-start; justify-content: center; min-width: 180px;" onclick="window.location.href='404.html'">Save Settings</button>
+
+          </form>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    /* =========================================================
+       Dashboard Logic & Animations
+       ========================================================= */
+
+    // Retrieve and display logged in email & role
+    (function() {
+      const email = localStorage.getItem('stackly_logged_in_email');
+      const role = localStorage.getItem('stackly_logged_in_role') || 'Admin';
+      if (email) {
+        const username = email.split('@')[0];
+        document.getElementById('profileNameText').textContent = ' ' + username.charAt(0).toUpperCase() + username.slice(1);
+        document.getElementById('profileEmailFull').textContent = email;
+        document.getElementById('profileEmailSubtitle').textContent = email;
+        document.getElementById('profileRole').textContent = role;
+      }
+    })();
+
+    // Sidebar navigation toggling on Mobile viewports
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarMenu = document.getElementById('sidebarMenu');
+    if (sidebarToggle && sidebarMenu) {
+      sidebarToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebarMenu.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!sidebarMenu.contains(e.target) && e.target !== sidebarToggle) {
+          sidebarMenu.classList.remove('open');
+        }
+      });
+    }
+
+    // Log Out logic
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('stackly_logged_in_email');
+        window.location.href = 'login.html';
+      });
+    }
+
+    // SPA view switching logic
+    const sidebarItems = document.querySelectorAll('.sidebar-item[data-view]');
+    const views = document.querySelectorAll('.dashboard-view');
+    const viewTitle = document.getElementById('viewTitle');
+
+    sidebarItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        const viewId = item.dataset.view;
+        if (!viewId) return; // Allow normal link navigation (e.g. to 404.html)
+        e.preventDefault();
+        
+        const targetView = document.getElementById('view-' + viewId);
+        if (!targetView) return;
+        
+        // Deactivate previous active menu items and views
+        document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+        views.forEach(v => v.classList.remove('active'));
+        
+        // Activate target
+        item.classList.add('active');
+        targetView.classList.add('active');
+        
+        // Update header title
+        viewTitle.textContent = item.textContent.trim();
+        
+        // Close mobile menu if open
+        if (sidebarMenu) sidebarMenu.classList.remove('open');
+        
+        // Trigger count-up animations for numbers inside the active view
+        targetView.querySelectorAll('[data-target]').forEach(counter => {
+          const target = parseFloat(counter.dataset.target);
+          const isCurrency = counter.textContent.startsWith('$') || counter.id.toLowerCase().includes('sales') || counter.id.toLowerCase().includes('value') || counter.id.toLowerCase().includes('cogs') || counter.id.toLowerCase().includes('profit') || counter.id.toLowerCase().includes('spent') || counter.id.toLowerCase().includes('aov');
+          
+          // Reset text
+          counter.textContent = isCurrency ? '$0' : (counter.id.toLowerCase().includes('margin') ? '0%' : '0');
+          
+          const isPercent = counter.id.toLowerCase().includes('margin') || counter.id.toLowerCase().includes('pct') || counter.id.toLowerCase().includes('rate');
+          
+          animateCounter(counter.id, target, isCurrency, isPercent);
+        });
+        
+        // Trigger visual progress animations in the view
+        setTimeout(() => {
+          // Gauge ring
+          const gauge = targetView.querySelector('.target-gauge-wrap');
+          if (gauge) gauge.classList.add('in');
+          
+          // Donut segment
+          const donut = targetView.querySelector('.donut-wrap');
+          if (donut) donut.classList.add('in');
+          
+          // Horizontal progress bars
+          targetView.querySelectorAll('.user-bar-fill, .dashboard-progress-fill').forEach(bar => {
+            bar.style.width = bar.dataset.percent;
+          });
+          
+          // Funnel vertical bars
+          targetView.querySelectorAll('.funnel-bar').forEach(bar => {
+            bar.style.height = bar.dataset.height;
+          });
+        }, 100);
+      });
+    });
+
+    // Counter Animations
+    function animateCounter(id, targetVal, isCurrency = false, isPercent = false) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      
+      let currentVal = 0;
+      const duration = 1200; // ms
+      const stepTime = 20; // ms
+      const steps = duration / stepTime;
+      const increment = targetVal / steps;
+      
+      const timer = setInterval(() => {
+        currentVal += increment;
+        if (currentVal >= targetVal) {
+          currentVal = targetVal;
+          clearInterval(timer);
+        }
+        
+        // Format output
+        let formatted = '';
+        if (isPercent) {
+          formatted = currentVal.toFixed(1) + '%';
+        } else if (isCurrency) {
+          formatted = '$' + Math.floor(currentVal).toLocaleString();
+        } else {
+          formatted = Math.floor(currentVal).toLocaleString();
+        }
+        
+        el.textContent = formatted;
+      }, stepTime);
+    }
+
+    // FAQ Accordion
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.closest('.accordion-item');
+        const isActive = item.classList.contains('active');
+        
+        // Close other items
+        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+        
+        // Toggle active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Support ticket submit
+    const supportForm = document.getElementById('supportForm');
+    if (supportForm) {
+      supportForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alShowToast('Support ticket submitted successfully ✦');
+        supportForm.reset();
+      });
+    }
+
+    // Settings submit
+    const settingsForm = document.getElementById('settingsForm');
+    if (settingsForm) {
+      settingsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alShowToast('Store settings saved successfully ✦');
+      });
+      
+      // Password strength in settings
+      const pw = settingsForm.querySelector('#settings-password');
+      const bar = document.getElementById('settingsStrengthBar');
+      if (pw && bar) {
+        pw.addEventListener('input', () => {
+          const v = pw.value;
+          let score = 0;
+          if (v.length > 5) score += 33;
+          if (/[A-Z]/.test(v) && /[0-9]/.test(v)) score += 33;
+          if (/[^A-Za-z0-9]/.test(v)) score += 34;
+          bar.style.width = Math.min(score, 100) + '%';
+          bar.style.background = score > 66 ? '#3C4A3C' : score > 33 ? '#B08D57' : '#8B5A3C';
+        });
+      }
+    }
+
+    // Toast Notification helper
+    function alShowToast(msg){
+      let toast = document.getElementById('al-toast');
+      if(!toast){
+        toast = document.createElement('div');
+        toast.id = 'al-toast';
+        toast.style.cssText = 'position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--cream);padding:12px 24px;border-radius:8px;font-size:13px;font-family:var(--font-body);border:1px solid var(--line);opacity:0;transition:all .3s;z-index:10000;pointer-events:none;white-space:nowrap;';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(toast._t);
+      toast._t = setTimeout(function(){
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(20px)';
+      }, 2000);
+    }
+
+    // Start counters on load for Dashboard
+    window.addEventListener('load', () => {
+      // Sales
+      const salesTarget = parseInt(document.getElementById('statSales').dataset.target, 10);
+      animateCounter('statSales', salesTarget, true);
+      
+      // Orders
+      const ordersTarget = parseInt(document.getElementById('statOrders').dataset.target, 10);
+      animateCounter('statOrders', ordersTarget, false);
+      
+      // Visitors
+      const visitorsTarget = parseInt(document.getElementById('statVisitors').dataset.target, 10);
+      animateCounter('statVisitors', visitorsTarget, false);
+
+      // Trigger animations for visual charts
+      setTimeout(() => {
+        document.getElementById('targetGaugeBox').classList.add('in');
+        document.getElementById('donutBox').classList.add('in');
+        
+        // Country Bars
+        document.querySelectorAll('.user-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.percent;
+        });
+
+        // Funnel Bars
+        document.querySelectorAll('.funnel-bar').forEach(bar => {
+          bar.style.height = bar.dataset.height;
+        });
+      }, 100);
+    });
+
+  </script>
+</body>
+</html>
